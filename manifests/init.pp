@@ -48,8 +48,17 @@ class splunk (
   $splunk_user    = $splunk::params::splunk_user,
   $splunkd_listen = '127.0.0.1',
   $web_port       = '8000',
-  $purge_inputs   = false,
-  $purge_outputs  = false,
+  $purge_authentication = false,
+  $purge_authorize      = false,
+  $purge_distsearch     = false,
+  $purge_indexes        = false,
+  $purge_inputs         = false,
+  $purge_limits         = false,
+  $purge_outputs        = false,
+  $purge_props          = false,
+  $purge_server         = false,
+  $purge_transforms     = false,
+  $purge_web            = false,
 ) inherits splunk::params {
 
   $virtual_service = $splunk::params::server_service
@@ -107,11 +116,52 @@ class splunk (
 
   # If the purge parameters have been set, remove all unmanaged entries from
   # the inputs.conf and outputs.conf files, respectively.
-  if $purge_inputs  {
-    resources { 'splunkforwarder_input':  purge => true; }
+  if $purge_authentication  {
+    resources { 'splunk_authentication':  purge => true; }
   }
+
+  if $purge_authorize  {
+    resources { 'splunk_authorize':  purge => true; }
+  }
+
+  if $purge_distsearch  {
+    resources { 'splunk_distsearch':  purge => true; }
+  }
+
+  if $purge_indexes  {
+    resources { 'splunk_indexes':  purge => true; }
+  }
+
+  if $purge_inputs  {
+    resources { 'splunk_input':  purge => true; 
+                'splunkforwarder_input':  purge => true; }
+  }
+
+  if $purge_limits  {
+    resources { 'splunk_limits':  purge => true; }
+  }
+
   if $purge_outputs {
-    resources { 'splunkforwarder_output': purge => true; }
+    resources { 'splunk_output': purge => true;
+                'splunkforwarder_output': purge => true; }
+  }
+
+  if $purge_props  {
+    resources { 'splunk_props':  purge => true; }
+  }
+
+
+  if $purge_server  {
+    resources { 'splunk_server':  purge => true; }
+  }
+
+
+  if $purge_transforms  {
+    resources { 'splunk_transforms':  purge => true; }
+  }
+
+  if $purge_web  {
+    resources { 'splunk_web':  purge => true; }
   }
 
   # This is a module that supports multiple platforms. For some platforms
