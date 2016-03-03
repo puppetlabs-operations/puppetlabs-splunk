@@ -114,6 +114,7 @@ class splunk::forwarder (
 
   # Realize resources shared between server and forwarder profiles, and set up
   # dependency chains.
+  realize(Service[$virtual_service])
   include splunk::virtual
 
   Package                <| title == $package_name      |> ->
