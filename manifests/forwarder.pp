@@ -139,7 +139,7 @@ class splunk::forwarder (
   File {
     owner => $splunk_user,
     group => $splunk_user,
-    mode => 644,
+    mode  => '0644',
   }
 
   file { "/opt/splunkforwarder/etc/system/local/inputs.conf":
