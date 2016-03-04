@@ -224,6 +224,5 @@ class splunk::params (
   $server_pkg_src    = "${src_root}/${server_src_subdir}/${server_src_pkg}"
   $forwarder_pkg_src = "${src_root}/${forwarder_src_subdir}/${forwarder_src_pkg}"
   $create_password   = true
-  $splunk_user = 'root'
-
+  $splunk_user  = 'root'
 }
