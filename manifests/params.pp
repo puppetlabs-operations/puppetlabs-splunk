@@ -68,7 +68,7 @@
 #
 class splunk::params (
   $version      = '6.3.3',
-  $build        = '179365',
+  $build        = 'f44afce176d0',
   $src_root     = 'puppet:///modules/splunk',
   $splunkd_port = '8089',
   $logging_port = '9997',
